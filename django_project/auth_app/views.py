@@ -1,3 +1,4 @@
+import os
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -6,7 +7,7 @@ from django.contrib.auth import authenticate
 import jwt
 from datetime import datetime, timedelta
 
-SECRET_KEY = "your-secret-key"  # Замени на безопасный ключ в продакшене
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 class RegisterView(APIView):
     def post(self, request):

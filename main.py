@@ -1,3 +1,4 @@
+import os
 from fastapi import FastAPI, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from pydantic import BaseModel
@@ -5,7 +6,7 @@ from typing import Optional
 from datetime import datetime
 import jwt
 
-SECRET_KEY = "your-secret-key"  # Должен совпадать с Django
+SECRET_KEY = os.environ.get('SECRET_KEY')
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="http://localhost:8000/login")
 
 class CapsuleCreate(BaseModel):
